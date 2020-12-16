@@ -2253,7 +2253,8 @@
                 var listProps = {
                   className: "slick-list",
                   style: listStyle,
-                  onClick: _this.clickHandler,
+                  //ADA: removed
+                  // onClick: this.clickHandler,
                   onMouseDown: touchMove ? _this.swipeStart : null,
                   onMouseMove:
                     _this.state.dragging && touchMove ? _this.swipeMove : null,
@@ -2271,7 +2272,9 @@
                 var innerSliderProps = {
                   className: className,
                   dir: "ltr",
-                  style: _this.props.style
+                  style: _this.props.style,
+                  role: "region",
+                  "aria-label": "carousel"
                 };
 
                 if (_this.props.unslick) {
@@ -4635,6 +4638,8 @@
                   {
                     key: "original" + getKey(child, index),
                     "data-index": index,
+                    role: "group",
+                    "aria-label": "Slide " + index + 1,
                     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(
                       slideClasses,
                       slideClass
