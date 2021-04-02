@@ -338,8 +338,8 @@
           if (Reflect.construct.sham) return false;
           if (typeof Proxy === "function") return true;
           try {
-            Date.prototype.toString.call(
-              Reflect.construct(Date, [], function() {})
+            Boolean.prototype.valueOf.call(
+              Reflect.construct(Boolean, [], function() {})
             );
             return true;
           } catch (e) {
@@ -989,8 +989,8 @@
           if (Reflect.construct.sham) return false;
           if (typeof Proxy === "function") return true;
           try {
-            Date.prototype.toString.call(
-              Reflect.construct(Date, [], function() {})
+            Boolean.prototype.valueOf.call(
+              Reflect.construct(Boolean, [], function() {})
             );
             return true;
           } catch (e) {
@@ -2866,7 +2866,7 @@
       /***/ function(module, exports, __webpack_require__) {
         var __WEBPACK_AMD_DEFINE_ARRAY__,
           __WEBPACK_AMD_DEFINE_RESULT__; /*!
-  Copyright (c) 2017 Jed Watson.
+  Copyright (c) 2018 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
@@ -2888,16 +2888,22 @@
 
               if (argType === "string" || argType === "number") {
                 classes.push(arg);
-              } else if (Array.isArray(arg) && arg.length) {
-                var inner = classNames.apply(null, arg);
-                if (inner) {
-                  classes.push(inner);
+              } else if (Array.isArray(arg)) {
+                if (arg.length) {
+                  var inner = classNames.apply(null, arg);
+                  if (inner) {
+                    classes.push(inner);
+                  }
                 }
               } else if (argType === "object") {
-                for (var key in arg) {
-                  if (hasOwn.call(arg, key) && arg[key]) {
-                    classes.push(key);
+                if (arg.toString === Object.prototype.toString) {
+                  for (var key in arg) {
+                    if (hasOwn.call(arg, key) && arg[key]) {
+                      classes.push(key);
+                    }
                   }
+                } else {
+                  classes.push(arg.toString());
                 }
               }
             }
@@ -4411,8 +4417,8 @@
           if (Reflect.construct.sham) return false;
           if (typeof Proxy === "function") return true;
           try {
-            Date.prototype.toString.call(
-              Reflect.construct(Date, [], function() {})
+            Boolean.prototype.valueOf.call(
+              Reflect.construct(Boolean, [], function() {})
             );
             return true;
           } catch (e) {
@@ -4545,7 +4551,10 @@
             style.position = "relative";
 
             if (spec.vertical) {
-              style.top = -spec.index * parseInt(spec.slideHeight);
+              style.top =
+                isNaN(-spec.index * parseInt(spec.slideHeight)) === false
+                  ? -spec.index * parseInt(spec.slideHeight)
+                  : 0;
             } else {
               style.left = -spec.index * parseInt(spec.slideWidth);
             }
@@ -5041,8 +5050,8 @@
           if (Reflect.construct.sham) return false;
           if (typeof Proxy === "function") return true;
           try {
-            Date.prototype.toString.call(
-              Reflect.construct(Date, [], function() {})
+            Boolean.prototype.valueOf.call(
+              Reflect.construct(Boolean, [], function() {})
             );
             return true;
           } catch (e) {
@@ -5406,8 +5415,8 @@
           if (Reflect.construct.sham) return false;
           if (typeof Proxy === "function") return true;
           try {
-            Date.prototype.toString.call(
-              Reflect.construct(Date, [], function() {})
+            Boolean.prototype.valueOf.call(
+              Reflect.construct(Boolean, [], function() {})
             );
             return true;
           } catch (e) {
