@@ -62,7 +62,7 @@ const getSlideStyle = spec => {
   if (spec.fade) {
     style.position = "relative";
     if (spec.vertical) {
-      style.top = -spec.index * parseInt(spec.slideHeight);
+      style.top = isNaN(-spec.index * parseInt(spec.slideHeight)) === false ? (-spec.index * parseInt(spec.slideHeight)) : 0;
     } else {
       style.left = -spec.index * parseInt(spec.slideWidth);
     }
