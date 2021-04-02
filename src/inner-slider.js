@@ -429,6 +429,10 @@ export class InnerSlider extends React.Component {
       this.slideHandler(targetSlide);
     }
     this.props.autoplay && this.autoPlay("update");
+    if (this.props.focusOnSelect) {
+      const nodes = this.list.querySelectorAll(".slick-current");
+      nodes[0] && nodes[0].focus();
+    }
   };
   clickHandler = e => {
     if (this.clickable === false) {
@@ -719,7 +723,8 @@ export class InnerSlider extends React.Component {
     let listProps = {
       className: "slick-list",
       style: listStyle,
-      onClick: this.clickHandler,
+      //ADA: removed
+      // onClick: this.clickHandler,
       onMouseDown: touchMove ? this.swipeStart : null,
       onMouseMove: this.state.dragging && touchMove ? this.swipeMove : null,
       onMouseUp: touchMove ? this.swipeEnd : null,
@@ -734,7 +739,9 @@ export class InnerSlider extends React.Component {
     let innerSliderProps = {
       className: className,
       dir: "ltr",
-      style: this.props.style
+      style: this.props.style,
+      role: "region",
+      "aria-label": "carousel"
     };
 
     if (this.props.unslick) {

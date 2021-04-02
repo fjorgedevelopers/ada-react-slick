@@ -121,6 +121,8 @@ const renderSlides = spec => {
       React.cloneElement(child, {
         key: "original" + getKey(child, index),
         "data-index": index,
+        role: "group",
+        "aria-label": "Slide " + index + 1,
         className: classnames(slideClasses, slideClass),
         tabIndex: "-1",
         "aria-hidden": !slideClasses["slick-active"],
